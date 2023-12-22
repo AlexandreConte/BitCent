@@ -1,7 +1,7 @@
+import Landing from "@/components/landing";
+
 export default function Home() {
     return (
-        <div>
-            Bitcent
-        </div>
+        <Landing />
     )
 }
