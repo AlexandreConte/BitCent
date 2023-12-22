@@ -21,7 +21,7 @@ export default function Menu() {
                 Depoimentos
             </MenuItem>
             <MenuItem
-                className="hidden sm:flex bg-gradient-to-r from-indigo-600 to-cyan-600"
+                className="hidden sm:flex bg-gradient-to-r from-indigo-600 to-cyan-600 rounded-md"
                 onClick={loginGoogle}
             >
                 <div className="flex items-center gap-2">

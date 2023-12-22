@@ -41,7 +41,7 @@ export default function Slogan() {
         <div className="flex flex-col justify-center gap-5">
             {renderizarFrase()}
             <div className="text-sm lg:text-lg font-thin text-zinc-500">
-                Plataforma financeira que simplifica sua vida
+                Plataforma financeira que simplifica sua vida!
             </div>
             <div className="flex justify-center sm:justify-start items-center">
                 <div className="

@@ -12,7 +12,9 @@ export default function MenuItem({ children, className, onClick, url }: MenuItem
         return (
             <div className={`
                 flex justify-center items-center cursor-pointer
-                text-zinc-300 m-2 p-4 rounded-md h-9
+                text-zinc-300 m-2 p-4 h-9 
+                border-b border-transparent hover:border-zinc-300
+                transition-colors duration-150
                 ${className}
             `}
                 onClick={onClick}
