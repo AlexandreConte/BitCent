@@ -18,3 +18,5 @@ const transacoesFalsas: Transacao[] = [
         tipo: TipoTransacao.DESPESA
     }
 ]
+
+export default transacoesFalsas
