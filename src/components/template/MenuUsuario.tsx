@@ -2,9 +2,13 @@ import { Avatar, Button, Menu, rem } from "@mantine/core";
 import usuario from "@/data/constants/usuarioFalso";
 import React from "react";
 import Link from "next/link";
-import { IconCoin, IconUser } from "@tabler/icons-react";
+import { IconCoin, IconLogout, IconUser } from "@tabler/icons-react";
 
 export default function MenuUsuario() {
+
+    function logOut() {
+        console.log("log out")
+    }
 
     return (
         <Menu
@@ -29,20 +33,28 @@ export default function MenuUsuario() {
                     />
                 </div>
             </Menu.Target>
-            <Menu.Dropdown className="fixed left-0 top-20 px-6 py-3 rounded-lg bg-zinc-700 my-10">
+            <Menu.Dropdown className="fixed left-0 top-20 px-6 py-3 rounded-lg bg-zinc-700 mt-10">
                 <div className="flex flex-col justify-center gap-y-2">
-                    <Menu.Label>
-                        <span className="flex items-center gap-x-2 gap-y-1">
-                            <IconUser /> Usuário
-                        </span>
-                    </Menu.Label>
+                    <Link href="/usuario">
+                        <Menu.Label>
+                            <span className="flex items-center gap-x-2 gap-y-1">
+                                <IconUser size={20} /> Usuário
+                            </span>
+                        </Menu.Label>
+                    </Link>
                     <Link href="/">
                         <Menu.Item>
                             <span className="flex items-center gap-x-2 gap-y-1">
-                                <IconCoin /> Finanças
+                                <IconCoin size={20} /> Finanças
                             </span>
                         </Menu.Item>
                     </Link>
+                    <hr className="w" />
+                    <Menu.Item
+                        onClick={logOut}
+                    >
+                        <span className="flex items-center gap-x-2 gap-y-1 text-red-500"><IconLogout />Sair</span>
+                    </Menu.Item>
                 </div>
             </Menu.Dropdown>
         </Menu>

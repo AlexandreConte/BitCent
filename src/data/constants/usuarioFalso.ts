@@ -1,7 +1,8 @@
+import Id from "@/logic/core/comum/id";
 import Usuario from "@/logic/core/usuario/Usuario";
 
 const usuarioFalso = {
-    id: "43256642311",
+    id: Id.novo(),
     nome: "Alexandre Conte",
     email: "alexandreconte.dev@gmail.com",
     imagemUrl: null,
