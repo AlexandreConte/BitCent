@@ -8,7 +8,7 @@ const transacoesFalsas: Transacao[] = [
         descricao: 'Salário',
         data: new Date(2023, 4, 1),
         valor: 7654.32,
-        tipo: TipoTransacao.DESPESA
+        tipo: TipoTransacao.RECEITA
     },
     {
         id: Id.novo(),
