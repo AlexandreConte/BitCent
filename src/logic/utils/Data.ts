@@ -4,8 +4,8 @@ export default class Data {
             const dia = dt.getDate().toString().padStart(2, '0')
             const mes = (dt.getMonth() + 1).toString().padStart(2, '0')
             const ano = dt.getFullYear()
-            
+
             return `${dia}${separador}${mes}${separador}${ano}`
-        }
+        },
     }
 }

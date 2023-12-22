@@ -1,4 +1,4 @@
-import { Avatar, Button, Menu, rem } from "@mantine/core";
+import { Avatar, Menu } from "@mantine/core";
 import usuario from "@/data/constants/usuarioFalso";
 import React from "react";
 import Link from "next/link";
