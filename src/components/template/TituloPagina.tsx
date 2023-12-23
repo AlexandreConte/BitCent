@@ -1,9 +1,9 @@
 import { cloneElement } from "react"
 
 interface TituloPaginaProps {
-    icone: any
+    icone?: any
     principal: string
-    secundario: string
+    secundario?: string
     className?: string
 }
 
@@ -22,9 +22,11 @@ export default function TituloPagina({ icone, principal, secundario, className }
                 <h1 className="text-2xl font-black">
                     {principal}
                 </h1>
-                <h2 className="text-sm font-thin -mt-1">
-                    {secundario}
-                </h2>
+                {secundario && (
+                    <h2 className="text-sm font-thin -mt-1">
+                        {secundario}
+                    </h2>
+                )}
             </div>
         </div>
     )

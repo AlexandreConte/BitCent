@@ -3,8 +3,8 @@ import Transacao from "@/logic/core/financas/Transacao"
 import Dinheiro from "@/logic/utils/Dinheiro"
 import Data from "@/logic/utils/Data"
 import useFormulario from "@/data/hooks/useFormulario"
-import { DatePicker, DatePickerInput } from "@mantine/dates"
-import { IconArrowDown, IconArrowUp, IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+import { DatePicker } from "@mantine/dates"
+import { IconArrowDown, IconArrowUp } from "@tabler/icons-react"
 import { Group, Radio } from "@mantine/core"
 import { TipoTransacao } from "@/logic/core/financas/TipoTransacao"
 
@@ -17,7 +17,7 @@ interface FormularioProps {
 
 export default function Formulario({ transacao, cancelar, excluir, salvar }: FormularioProps) {
 
-    const { dados, alterarAtributo } = useFormulario(transacao)
+    const { dados, alterarAtributo } = useFormulario<Transacao>(transacao)
 
     return (
         <div className="
