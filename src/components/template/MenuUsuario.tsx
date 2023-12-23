@@ -1,14 +1,12 @@
 import { Avatar, Menu } from "@mantine/core";
-import usuario from "@/data/constants/usuarioFalso";
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
-import { IconCoin, IconLogout, IconUser, IconUserCircle } from "@tabler/icons-react";
+import { IconCoin, IconLogout, IconUserCircle } from "@tabler/icons-react";
+import AutenticacaoContext from "@/data/contexts/AutenticacaoContext";
 
 export default function MenuUsuario() {
 
-    function logOut() {
-        console.log("log out")
-    }
+    const { usuario, logout } = useContext(AutenticacaoContext)
 
     return (
         <Menu
@@ -50,7 +48,7 @@ export default function MenuUsuario() {
                     </Link>
                     <hr className="w" />
                     <Menu.Item
-                        onClick={logOut}
+                        onClick={logout}
                     >
                         <span className="flex items-center gap-x-2 gap-y-1 text-red-500"><IconLogout />Sair</span>
                     </Menu.Item>
