@@ -1,35 +1,16 @@
-import { useState } from "react";
 import Cabecalho from "../template/Cabecalho";
 import Conteudo from "../template/Conteudo";
 import Pagina from "../template/Pagina";
 import Lista from "./Lista";
-import Transacao, { transacaoVazia } from "@/logic/core/financas/Transacao";
-import transacoesFalsas from "@/data/constants/transacoesFalsas";
+import { transacaoVazia } from "@/logic/core/financas/Transacao";
 import Formulario from "./Formulario";
 import NaoEncontrado from "../template/NaoEncontrado";
-import Id from "@/logic/core/comum/id";
 import { IconPlus } from "@tabler/icons-react";
-
+import useTransacao from "@/data/hooks/useTransacao";
 
 export default function Financas() {
 
-    const [transacoes, setTransacoes] = useState<Transacao[]>(transacoesFalsas)
-    const [transacao, setTransacao] = useState<Transacao | null>(null)
-
-    function salvar(transacao: Transacao) {
-        const outrasTransacoes = transacoes.filter(t => t.id !== transacao.id)
-        setTransacoes([...outrasTransacoes, {
-            ...transacao,
-            id: transacao.id ?? Id.novo()
-        }])
-        setTransacao(null)
-    }
-
-    function excluir(transacao: Transacao) {
-        const outrasTransacoes = transacoes.filter(t => t.id !== transacao.id)
-        setTransacoes(outrasTransacoes)
-        setTransacao(null)
-    }
+    const { transacoes, transacao, salvar, excluir, setTransacao } = useTransacao()
 
     return (
         <Pagina>

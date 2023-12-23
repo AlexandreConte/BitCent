@@ -1,6 +1,10 @@
+import AutenticacaoContext from "@/data/contexts/AutenticacaoContext"
 import { IconArrowRight } from "@tabler/icons-react"
+import { useContext } from "react"
 
 export default function Slogan() {
+
+    const { loginGoogle } = useContext(AutenticacaoContext)
 
     function renderizarFrase() {
         return (
@@ -51,10 +55,14 @@ export default function Slogan() {
                     rounded-md
                     justify-center w-full
                 ">
-                    <span className="font-thin md:text-sm text-base">
-                        Iniciar <span className="hidden sm:inline">Agora</span>
-                        <IconArrowRight className="hidden lg:inline" stroke={1} />
-                    </span>
+                    <button
+                        onClick={loginGoogle}
+                    >
+                        <span className="font-thin md:text-sm text-base">
+                            Iniciar <span className="hidden sm:inline">Agora</span>
+                            <IconArrowRight className="hidden lg:inline" stroke={1} />
+                        </span>
+                    </button>
                 </div>
             </div>
         </div>
