@@ -2,7 +2,7 @@ import { Avatar, Menu } from "@mantine/core";
 import usuario from "@/data/constants/usuarioFalso";
 import React from "react";
 import Link from "next/link";
-import { IconCoin, IconLogout, IconUser } from "@tabler/icons-react";
+import { IconCoin, IconLogout, IconUser, IconUserCircle } from "@tabler/icons-react";
 
 export default function MenuUsuario() {
 
@@ -14,7 +14,6 @@ export default function MenuUsuario() {
         <Menu
             width={220}
             position="top-end"
-            withinPortal={false}
         >
             <Menu.Target>
                 <div className="flex items-center gap-3 cursor-pointer">
@@ -38,7 +37,7 @@ export default function MenuUsuario() {
                     <Link href="/usuario">
                         <Menu.Label>
                             <span className="flex items-center gap-x-2 gap-y-1">
-                                <IconUser size={20} /> Usuário
+                                <IconUserCircle size={20} /> Usuário
                             </span>
                         </Menu.Label>
                     </Link>
