@@ -4,6 +4,9 @@ import Dinheiro from "@/logic/utils/Dinheiro"
 import Data from "@/logic/utils/Data"
 import useFormulario from "@/data/hooks/useFormulario"
 import { DatePicker, DatePickerInput } from "@mantine/dates"
+import { IconArrowDown, IconArrowUp, IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+import { Group, Radio } from "@mantine/core"
+import { TipoTransacao } from "@/logic/core/financas/TipoTransacao"
 
 interface FormularioProps {
     transacao: Transacao
@@ -14,7 +17,7 @@ interface FormularioProps {
 
 export default function Formulario({ transacao, cancelar, excluir, salvar }: FormularioProps) {
 
-    const { dados, setDados, alterarAtributo } = useFormulario(transacao)
+    const { dados, alterarAtributo } = useFormulario(transacao)
 
     return (
         <div className="
@@ -46,38 +49,32 @@ export default function Formulario({ transacao, cancelar, excluir, salvar }: For
                             <span>Data</span>
                             <span className="bg-gray-500 rounded-lg text-black p-1 cursor-not-allowed">{Data.ddmmy.formatar(dados.data)}</span>
                         </div>
-
                         <DatePicker
-                            nextIcon
-                            previousIcon
+                            nextIcon={<IconArrowDown size={18} />}
+                            previousIcon={<IconArrowUp size={18} />}
                             value={dados.data}
                             className="text-white"
                             onChange={alterarAtributo('data')}
                         />
                     </div>
-                    <div className="flex gap-x-4 gap-y-1">
-                        <div className="flex gap-x-2">
-                            <input
-                                type="radio"
-                                value="receita"
-                                id="receita"
-                                className="text-white"
-                                name="tipo"
-                            />
-                            <label htmlFor="receita" className="text-white">Receita</label>
-                        </div>
-                        <div className="flex gap-x-2">
-                            <input
-                                type="radio"
-                                value="despesa"
-                                id="despesa"
-                                className="text-white"
-                                name="tipo"
-                            />
-                            <label htmlFor="despesa" className="text-white">Despesa</label>
-                        </div>
+                    <div className="flex gap-x-4 text-white">
+                        <Radio.Group
+                            value={dados.tipo}
+                            onChange={alterarAtributo('tipo')}
+                        >
+                            <Group className="flex items-center justify-center gap-x-6">
+                                <Radio classNames={{ body: "flex gap-2", icon: "hidden" }}
+                                    value={TipoTransacao.RECEITA}
+                                    label="Receita"
+                                />
+                                <Radio classNames={{ body: "flex gap-2", icon: "hidden" }}
+                                    value={TipoTransacao.DESPESA}
+                                    label="Despesa"
+                                />
+                            </Group>
+                        </Radio.Group>
                     </div>
-                    <div className="flex gap-x-3">
+                    <div className="flex gap-3 flex-wrap justify-center">
                         <button
                             className="bg-green-500 px-4 py-1.5 rounded-md text-white"
                             onClick={() => salvar?.(dados)}
@@ -90,14 +87,16 @@ export default function Formulario({ transacao, cancelar, excluir, salvar }: For
                         >
                             Voltar
                         </button>
-                        <div className="flex-1"></div>
-                        {dados.id && (
-                            <button className="bg-red-500 rounded-md px-4 py-1.5 text-white"
-                                onClick={() => excluir?.(dados)}
-                            >
-                                Excluir
-                            </button>
-                        )}
+                        <div className="sm:flex-1"></div>
+                        <div className="flex justify-center items-center">
+                            {dados.id && (
+                                <button className="bg-red-500 rounded-md px-4 py-1.5 text-white"
+                                    onClick={() => excluir?.(dados)}
+                                >
+                                    Excluir
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
