@@ -1,5 +1,3 @@
-import Area from "../landing/comum/Area"
-
 interface ConteudoProps {
     children: any
     className?: string
@@ -7,13 +5,11 @@ interface ConteudoProps {
 
 export default function Conteudo({ children, className }: ConteudoProps) {
     return (
-        <Area>
-            <div className={`
+        <div className={`
                 flex flex-col p-7
                 ${className ?? ""}
             `}>
-                {children}
-            </div>
-        </Area>
+            {children}
+        </div>
     )
 }

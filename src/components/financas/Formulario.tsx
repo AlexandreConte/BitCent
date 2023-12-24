@@ -3,10 +3,11 @@ import Transacao from "@/logic/core/financas/Transacao"
 import Dinheiro from "@/logic/utils/Dinheiro"
 import Data from "@/logic/utils/Data"
 import useFormulario from "@/data/hooks/useFormulario"
-import { DatePicker } from "@mantine/dates"
+import { DatePicker, DatePickerInput } from "@mantine/dates"
 import { IconArrowDown, IconArrowUp } from "@tabler/icons-react"
 import { Group, Radio } from "@mantine/core"
 import { TipoTransacao } from "@/logic/core/financas/TipoTransacao"
+import '@mantine/dates/styles.css';
 
 interface FormularioProps {
     transacao: Transacao
@@ -24,7 +25,7 @@ export default function Formulario({ transacao, cancelar, excluir, salvar }: For
             flex flex-col border border-zinc-700
             rounded-xl overflow-hidden
         ">
-            <div className="bg-black py-3 px-7 text-zinc-400">
+            <div className="bg-black py-3 sm:px-7 w-full flex flex-col justify-center items-center">
                 <div className="flex flex-col gap-4 gap-y-6 p-4 sm:p-7 text-black">
                     <div className="flex flex-col gap-y-1">
                         <label htmlFor="descricao" className="text-white">Descrição</label>
@@ -44,14 +45,23 @@ export default function Formulario({ transacao, cancelar, excluir, salvar }: For
                             onChange={alterarAtributo('valor', Dinheiro.desformatar)}
                         />
                     </div>
-                    <div className="flex flex-col gap-y-8 border w-fit px-4 py-4">
+                    <div className="flex flex-col gap-y-8 py-4">
                         <div className="text-white flex flex-col">
                             <span>Data</span>
-                            <span className="bg-gray-500 rounded-lg text-black p-1 cursor-not-allowed">{Data.ddmmy.formatar(dados.data)}</span>
+                            <span className="bg-gray-500 rounded-lg text-black p-1 cursor-not-allowed" >
+                                {Data.ddmmy.formatar(dados.data)}
+                            </span>
                         </div>
                         <DatePicker
-                            nextIcon={<IconArrowDown size={18} />}
-                            previousIcon={<IconArrowUp size={18} />}
+                            nextIcon={<IconArrowDown className="text-white" size={18} />}
+                            previousIcon={<IconArrowUp className="text-white" size={18} />}
+                            classNames={{
+                                calendarHeader: "bg-blue-500 text-white p-1 rounded-md",
+                                day: "px-1 sm:px-2 hover:bg-blue-500 active:bg-white active:text-black",
+                                monthsListControl: "px-4 hover:bg-blue-500 active:bg-white active:text-black",
+                                yearsListControl: "px-4 hover:bg-blue-500 active:bg-white active:text-black"
+                            }}
+                            monthLabelFormat={"MMMM/YY"}
                             value={dados.data}
                             className="text-white"
                             onChange={alterarAtributo('data')}

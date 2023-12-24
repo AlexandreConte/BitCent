@@ -1,30 +1,36 @@
 import Transacao from "@/logic/core/financas/Transacao"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import AutenticacaoContext from "../contexts/AutenticacaoContext"
-import Id from "@/logic/core/comum/id"
 import servicos from "@/logic/core"
-import transacoesFalsas from "../constants/transacoesFalsas"
 
 export default function useTransacao() {
+
     const { usuario } = useContext(AutenticacaoContext)
-    const [transacoes, setTransacoes] = useState<Transacao[]>(transacoesFalsas)
+    const [transacoes, setTransacoes] = useState<Transacao[]>([])
     const [transacao, setTransacao] = useState<Transacao | null>(null)
 
-    function salvar(transacao: Transacao) {
+    useEffect(() => {
+        buscarTransacoes()
+    }, [])
+
+    async function buscarTransacoes() {
         if (!usuario) return
-        const outrasTransacoes = transacoes.filter(t => t.id !== transacao.id)
-        setTransacoes([...outrasTransacoes, {
-            ...transacao,
-            id: transacao.id ?? Id.novo()
-        }])
-        servicos.transacao.salvar(transacao, usuario)
-        setTransacao(null)
+        const transacoes = await servicos.transacao.consultar(usuario)
+        setTransacoes(transacoes)
     }
 
-    function excluir(transacao: Transacao) {
-        const outrasTransacoes = transacoes.filter(t => t.id !== transacao.id)
-        setTransacoes(outrasTransacoes)
+    async function salvar(transacao: Transacao) {
+        if (!usuario) return
+        servicos.transacao.salvar(transacao, usuario)
         setTransacao(null)
+        await buscarTransacoes()
+    }
+
+    async function excluir(transacao: Transacao) {
+        if (!usuario) return
+        servicos.transacao.excluir(transacao, usuario)
+        setTransacao(null)
+        await buscarTransacoes()
     }
 
     return {
