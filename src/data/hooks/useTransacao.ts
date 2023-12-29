@@ -3,10 +3,13 @@ import { useContext, useEffect, useState } from "react"
 import AutenticacaoContext from "../contexts/AutenticacaoContext"
 import servicos from "@/logic/core"
 
+export type TipoExibicao = "lista" | "grade"
+
 export default function useTransacao() {
 
     const { usuario } = useContext(AutenticacaoContext)
 
+    const [tipoExibicao, setTipoExibicao] = useState<TipoExibicao>("lista")
     const [data, setData] = useState<Date>(new Date())
     const [transacoes, setTransacoes] = useState<Transacao[]>([])
     const [transacao, setTransacao] = useState<Transacao | null>(null)
@@ -39,9 +42,11 @@ export default function useTransacao() {
         data,
         transacoes,
         transacao,
+        tipoExibicao,
         salvar,
         excluir,
         setTransacao,
-        setData
+        setData,
+        setTipoExibicao,
     }
 }
