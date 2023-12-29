@@ -64,6 +64,7 @@ export default class Colecao {
     }
 
     private _converterDoFirebase(snapshot: DocumentSnapshot<DocumentData>) {
+        if (!snapshot.exists()) { return null }
         const entidade: any = { ...snapshot.data(), id: snapshot.id }
         if (!entidade) return entidade
         return Object.keys(entidade).reduce((obj: any, atributo: string) => {
@@ -85,11 +86,11 @@ export default class Colecao {
         const colecaoRef = collection(db, caminho)
 
         const filtrosWhere = filtros?.map(f => where(f.atributo, f.op, f.valor)) ?? []
-        const ordenacao = ordernarPor ? [orderBy(ordernarPor, direcao)]: []
+        const ordenacao = ordernarPor ? [orderBy(ordernarPor, direcao)] : []
 
         const consulta = query(colecaoRef, ...filtrosWhere, ...ordenacao)
         const resultado = await getDocs(consulta)
-        
+
         return resultado.docs.map(this._converterDoFirebase) ?? []
     }
 }

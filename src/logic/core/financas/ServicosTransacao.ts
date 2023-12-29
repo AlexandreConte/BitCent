@@ -25,11 +25,11 @@ export default class ServicosTransacao {
         return await this._colecao.consultar(caminho, 'data', 'asc')
     }
 
-    // async consultarPorMes(usuario: Usuario, data: Date) {
-    //     const caminho = `financas/${usuario.email}/transacoes`
-    //     return await this._colecao.consultarComFiltros(caminho, [
-    //         { atributo: 'data', op: ">=", valor: Data.primeiroDia(data) },
-    //         { atributo: 'data', op: "<=", valor: Data.ultimoDia(data) },
-    //     ])
-    // }
+    async consultarPorMes(usuario: Usuario, data: Date) {
+        const caminho = `financas/${usuario.email}/transacoes`
+        return await this._colecao.consultarComFiltros(caminho, [
+            { atributo: 'data', op: ">=", valor: Data.primeiroDia(data) },
+            { atributo: 'data', op: "<=", valor: Data.ultimoDia(data) },
+        ])
+    }
 }

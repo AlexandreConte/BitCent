@@ -6,16 +6,18 @@ import servicos from "@/logic/core"
 export default function useTransacao() {
 
     const { usuario } = useContext(AutenticacaoContext)
+
+    const [data, setData] = useState<Date>(new Date())
     const [transacoes, setTransacoes] = useState<Transacao[]>([])
     const [transacao, setTransacao] = useState<Transacao | null>(null)
 
     useEffect(() => {
         buscarTransacoes()
-    }, [])
+    }, [data])
 
     async function buscarTransacoes() {
         if (!usuario) return
-        const transacoes = await servicos.transacao.consultar(usuario)
+        const transacoes = await servicos.transacao.consultarPorMes(usuario, data)
         setTransacoes(transacoes)
     }
 
@@ -34,10 +36,12 @@ export default function useTransacao() {
     }
 
     return {
+        data,
         transacoes,
         transacao,
         salvar,
         excluir,
-        setTransacao
+        setTransacao,
+        setData
     }
 }
