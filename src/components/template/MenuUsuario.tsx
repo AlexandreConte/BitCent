@@ -26,6 +26,7 @@ export default function MenuUsuario() {
                     <Avatar
                         size={40}
                         src={usuario?.imagemUrl ?? "/user.svg"}
+                        className="w-10"
                         radius="xl"
                     />
                 </div>
