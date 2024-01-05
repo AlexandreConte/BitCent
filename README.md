@@ -7,7 +7,7 @@
         Este é um projeto desenvolvido para o controle das suas finanças.
     </li>
     <li>
-        Para usá-lo, basta acessá-lo <a href="#">AQUI</a> e fazer login com a sua conta do google.
+        Para usá-lo, basta acessá-lo <a href="https://ale-bitcent.vercel.app/">AQUI</a> e fazer login com a sua conta do google.
     </li>
 </div>
 <div align="center">
